@@ -1,0 +1,46 @@
+body{
+    background-color: #ccc;
+}
+.container{
+    max-width: 920px;
+    min-height: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+    .selectFile{
+        display: flex;
+        justify-content: center;
+    }
+        #file{
+            display: none;
+        }
+        .selectFile .startBtn{
+            width: 200px;
+            height: 80px;
+            margin: 15px 0;
+        }
+    
+    .outputBlocks{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+        .outputBlocks .block{
+            width: 45%;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+        }
+        .outputBlocks .block h2{
+            text-align: center;
+        }
+        .outputBlocks .block div{
+            font-size: 50px;
+            height: 100px;
+        }
