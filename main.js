@@ -84,9 +84,12 @@ window.onload = function(){
         const spf = 0.0016; //статическая производительность форсунки (гр/мс)
         const pF = 98; //статическая производительность форсунка (г/мин)
         const tF = 4; // вермя открытия форсунки
-        let timeXX=0,
+        let timeXX = 0,
+            timeStart = 0,
             frXX = 0,
-            rtArr=[],
+            frSt = 0,//общее кол-во израсходованного на трогание с места топлива
+            frStArr = [],//массив часового расхода топлива во время трогания авто с места
+            rtArr = [],
             fr = 0,
             frSum = 0;
         for(let i=0; i<arr.length; i++){
@@ -102,7 +105,22 @@ window.onload = function(){
                 }
                 let tEndXX = arr[i].time;
                 timeXX += tEndXX-tStartXX;
-            }else{
+            }else if(arr[i].spd <= 5){
+                let tStartStart = arr[i].time;
+                while(arr[i].spd <=5 && arr[i].pdz != 0){
+                    frStArr.push((((arr[i].div*2)/60000)*98*arr[i].od*60)/1000);
+                    if((i+1)<arr.length){
+                        i++;
+                    }else{
+                        i=arr.length-1;
+                        break;
+                    };
+                }
+
+                let tEndStart = arr[i].time;
+                timeStart += tEndStart-tStartStart;
+            }
+            else{
                 let mrt = (((arr[i].div*2)/60000)*98*arr[i].od*60)/1000;//моментальный расход топлива(л/ч)
                 
                 let spd =  (arr[i].spd == 0) ? 1 : arr[i].spd;
@@ -111,18 +129,30 @@ window.onload = function(){
             }
         }
         frXX = Math.round((((((4*2)/60000)*pF*950)/60)/1000 * timeXX)*100)/100; //Израсходовано на холостых за лог (л/ч) 
-        fr = rtArr.reduce((sum, cur)=>{ //средний расход топлива (л/100км)
+
+        if(frStArr.length != 0){
+            frSt = Math.round(((frStArr.reduce((sum, cur)=>{ 
+                            return sum + cur; 
+                        })/frStArr.length+1)/60/60*timeStart)*100)/100;
+            console.log(frSt);
+        }
+        
+        fr = Math.round(rtArr.reduce((sum, cur)=>{ //средний расход топлива (л/100км)
                         return sum + cur; 
-                    })/rtArr.length;
-        frSum = Math.round((fr+frXX)*100)/100;
+                    })/rtArr.length*100)/100;
+        frSum = Math.round((fr+frXX+frSt)*100)/100;
 
 
 
+        const rashodSum = document.querySelector('.l100km4Sum');
         const rashod = document.querySelector('.l100km4');
         const izrXX = document.querySelector('.rXX');
+        const izrStart = document.querySelector('.rS');
 
-        rashod.innerHTML = frSum;
+        rashodSum.innerHTML = frSum;
+        rashod.innerHTML = fr;
         izrXX.innerHTML = frXX;
+        izrStart.innerHTML = frSt;
     }
 
 

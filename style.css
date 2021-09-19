@@ -30,13 +30,18 @@ body{
     }
         .outputBlocks .block{
             width: 45%;
-            font-size: 12px;
+            font-size: 7px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             border: 1px solid #ccc;
         }
+            .outputBlocks .block_main{
+                width: 95%;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
         .outputBlocks .block h2{
             text-align: center;
         }
