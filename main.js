@@ -12,6 +12,8 @@ window.onload = function(){
 
    document.querySelector('.closeBtn').addEventListener('click', clear);
 
+   console.log(window.screen.height);
+
     function showFileInput(){
         fileO.click();
     }

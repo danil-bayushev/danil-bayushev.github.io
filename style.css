@@ -3,14 +3,17 @@ body{
 }
 .container{
     max-width: 920px;
-    min-height: 700px;
+    min-height: 470px;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     color:rgb(255, 255, 255);
-    text-shadow: 2px 2px 5px #000;
+    text-shadow: 1px 0 1px #000, 
+                0 1px 1px #000, 
+                -1px 0 1px #000, 
+                0 -1px 1px #000;
 }
     .wrapper{
         display: flex;
@@ -31,7 +34,10 @@ body{
             font-weight: bold;
             font-size: 16px;
             color:rgb(255, 255, 255);
-            text-shadow: 0 0 5px #000;
+            text-shadow: 1px 0 1px #000, 
+0 1px 1px #000, 
+-1px 0 1px #000, 
+0 -1px 1px #000;
             background-color:rgb(0, 204, 255);
         }
         .closeBtn{
