@@ -1,13 +1,16 @@
 window.onload = function(){
+    const rashodSum = document.querySelector('.l100km4Sum');
+    const rashod = document.querySelector('.l100km4');
+    const izrXX = document.querySelector('.rXX');
+    const izrStart = document.querySelector('.rS');
     let str = "";
     let files = [];
     let fileO = document.querySelector("#file");
     let startBtn = document.querySelector(".startBtn");
     startBtn.addEventListener('click', showFileInput);
     fileO.addEventListener('change', processFile);
-    let resultObj = {};
 
-
+   document.querySelector('.closeBtn').addEventListener('click', clear);
 
     function showFileInput(){
         fileO.click();
@@ -139,10 +142,7 @@ window.onload = function(){
 
 
 
-        const rashodSum = document.querySelector('.l100km4Sum');
-        const rashod = document.querySelector('.l100km4');
-        const izrXX = document.querySelector('.rXX');
-        const izrStart = document.querySelector('.rS');
+        
 
         rashodSum.innerHTML = frSum;
         rashod.innerHTML = fr;
@@ -151,7 +151,14 @@ window.onload = function(){
     }
 
 
-
+    function clear(){
+        str = "";
+        files=[];
+        rashodSum.innerHTML = "";
+        rashod.innerHTML = "";
+        izrXX.innerHTML = "";
+        izrStart.innerHTML = "";
+    }
 
     function hexToDec(hex){ return parseInt(hex,16); }
 
