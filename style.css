@@ -21,6 +21,8 @@ body{
             width: 200px;
             height: 80px;
             margin: 15px 0;
+            font-weight: bold;
+            font-size: 16px;background-color:rgb(0, 204, 255);
         }
     
     .outputBlocks{
@@ -35,18 +37,21 @@ body{
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #ccc;
+            border: 1px solid rgb(0, 0, 0);
+            background-color:rgb(195, 255, 127);
         }
             .outputBlocks .block_main{
                 width: 96%;
                 font-size: 12px;
                 margin-bottom: 10px;
+                background-color:rgb(195, 255, 127);
+                border: 2px solid black;
             }
         .outputBlocks .block h2{
             text-align: center;
         }
         .outputBlocks .block div{
-            font-size: 40px;
+            font-size: 35px;
             height: 70px;
         }
         .outputBlocks .block div.l100km4Sum{
