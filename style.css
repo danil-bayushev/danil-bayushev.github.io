@@ -42,6 +42,7 @@ body{
         }
             .outputBlocks .block_main{
                 width: 96%;
+                height: 150px;
                 font-size: 12px;
                 margin-bottom: 20px;
                 background-color:rgb(195, 255, 127);
