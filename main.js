@@ -81,9 +81,7 @@ window.onload = function(){
     }
 
     function calcFuelRate(arr){
-        const spf = 0.0016; //статическая производительность форсунки (гр/мс)
         const pF = 98; //статическая производительность форсунка (г/мин)
-        const tF = 4; // вермя открытия форсунки
         let timeXX = 0,
             timeStart = 0,
             frXX = 0,
@@ -108,7 +106,7 @@ window.onload = function(){
             }else if(arr[i].spd <= 5){
                 let tStartStart = arr[i].time;
                 while(arr[i].spd <=5 && arr[i].pdz != 0){
-                    frStArr.push((((arr[i].div*2)/60000)*98*arr[i].od*60)/1000);
+                    frStArr.push((((arr[i].div*2)/60000)*pF*arr[i].od*60)/1000);
                     if((i+1)<arr.length){
                         i++;
                     }else{
@@ -121,10 +119,8 @@ window.onload = function(){
                 timeStart += tEndStart-tStartStart;
             }
             else{
-                let mrt = (((arr[i].div*2)/60000)*98*arr[i].od*60)/1000;//моментальный расход топлива(л/ч)
-                
-                let spd =  (arr[i].spd == 0) ? 1 : arr[i].spd;
-                let rt100km4 = mrt * (100/spd); //моментальный расход топлива(л/100км)
+                let mrt = (((arr[i].div*2)/60000)*pF*arr[i].od*60)/1000;//моментальный расход топлива(л/ч)
+                let rt100km4 = mrt * (100/arr[i].spd); //моментальный расход топлива(л/100км)
                 rtArr.push(rt100km4);
             }
         }
@@ -134,7 +130,6 @@ window.onload = function(){
             frSt = Math.round(((frStArr.reduce((sum, cur)=>{ 
                             return sum + cur; 
                         })/frStArr.length+1)/60/60*timeStart)*100)/100;
-            console.log(frSt);
         }
         
         fr = Math.round(rtArr.reduce((sum, cur)=>{ //средний расход топлива (л/100км)
