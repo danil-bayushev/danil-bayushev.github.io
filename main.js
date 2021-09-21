@@ -3,6 +3,7 @@ window.onload = function(){
     const rashod = document.querySelector('.l100km4');
     const izrXX = document.querySelector('.rXX');
     const izrStart = document.querySelector('.rS');
+    let file = '';
     let str = "";
     let files = [];
     let fileO = document.querySelector("#file");
@@ -19,7 +20,7 @@ window.onload = function(){
     }
 
     function processFile(){
-        var file = this.files[0];
+        file = this.files[0];
         var reader = new FileReader();
         reader.onload = function(e) {
             if(!(files.includes(file.name, 0))){
@@ -37,6 +38,7 @@ window.onload = function(){
     function start(){
         let TIKS = strToObj(str, Tik);
         calcFuelRate(TIKS);
+        console.log(spdRate(TIKS));
     }
 
     function strToObj(string, classObj){
@@ -83,6 +85,15 @@ window.onload = function(){
         });
     
         return Obj;
+    }
+
+    function spdRate(arr){
+        return arr.map(el => {
+            return el.spd;
+        }).reduce((sum, cur)=>{ 
+            return sum + cur; 
+        })/arr.length;
+
     }
 
     function calcFuelRate(arr){
@@ -156,6 +167,7 @@ window.onload = function(){
     function clear(){
         str = "";
         files=[];
+        file = '';
         rashodSum.innerHTML = "";
         rashod.innerHTML = "";
         izrXX.innerHTML = "";
